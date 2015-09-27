@@ -4,8 +4,8 @@ html
     meta(charset='utf-8')
     meta(http-equiv='X-UA-Compatible', content='IE=edge')
     meta(name='viewport', content='width=device-width, initial-scale=1')
-    meta(name="description" content="A starter repo for Gulp, Jade, Sass, jQuery, and Bootstrap")
-    title Gulp | Jade | Sass | jQuery | Bootstrap
+    meta(name="description" content="A step sequencer built using the Web Audio API")
+    title Step
     link(rel='stylesheet', href='lib/build.css')
     link(rel='stylesheet', href='main.css')
     //- link(rel="icon", type="image/png", href="assets/favicon32.png", sizes="32x32")
@@ -17,16 +17,74 @@ html
         #snare.pad
         #closedHat.pad
         #clap.pad
-      .sequencer
-        - for (var i = 0; i < 2; i++)
-          .note.theone
-          .note
-          .note
-          .note
-          .note
-          .note
-          .note
-          .note
+      #bassTrack.sequencer
+        .note.theone
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note.theone
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+      #snareTrack.sequencer
+        .note.theone
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note.theone
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+      #closedHatTrack.sequencer
+        .note.theone
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note.theone
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+      #clapTrack.sequencer
+        .note.theone
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note.theone
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
+        .note
       .buttons
         .play PLAY
         .pause

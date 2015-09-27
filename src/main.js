@@ -15,6 +15,18 @@ var timer;
 
 var isPlaying = false;
 
+$(function() {
+  tracks.forEach(function(track, i) {
+    // var $track = $($('.sequencer')[i]);
+    track.notes.forEach(function(note, j) {
+      var $note = $($($('.sequencer')[i]).children()[j]);
+      if (note) {
+        $note.addClass('trackNote');
+      }
+    });
+  });
+});
+
 function play() {
   if (!isPlaying) {
     timer = setInterval(function() {
@@ -42,17 +54,26 @@ function stop() {
 function onNote(note) {
   $($('.note')[prev(note)]).removeClass('active');
   $($('.note')[note]).addClass('active');
-  if (note % 8 === 0) {
-    playSound('clap');
-  }
-  if (note % 4 === 0) {
-    playSound('snare');
-  } else if (note % 1 === 0) {
-    playSound('closedHat');
-  }
-  if (note % 7 === 0) {
-    playSound('bass');
-  }
+
+  tracks.forEach(function(track, i) {
+    if (track.notes[note]) {
+      playSound(track.id);
+    }
+  })
+
+
+
+  // if (note % 8 === 0) {
+  //   playSound('clap');
+  // }
+  // if (note % 4 === 0) {
+  //   playSound('snare');
+  // } else if (note % 1 === 0) {
+  //   playSound('closedHat');
+  // }
+  // if (note % 7 === 0) {
+  //   playSound('bass');
+  // }
 }
 
 $('.play').click(play);
@@ -76,5 +97,105 @@ function playSound(sound) {
 $('.pad').click(function() {
   var id = $(this).attr('id');
   playSound(id);
-})
+});
+
+
+var tracks = [
+  {
+    id: 'bass',
+    name:'Bass Drum',
+    src:'http://assets.noahyarian.com/sounds/808/BD/BD0075.WAV',
+    notes: [true,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false]
+      // 0: false,
+      // 1: false,
+      // 2: false,
+      // 3: false,
+      // 4: false,
+      // 5: false,
+      // 6: false,
+      // 7: false,
+      // 8: false,
+      // 9: false,
+      // 10: false,
+      // 11: false,
+      // 12: false,
+      // 13: false,
+      // 14: false,
+      // 15: false
+    // }
+  },
+  {
+    id: 'snare',
+    name: 'Snare Drum',
+    src:'http://assets.noahyarian.com/sounds/808/SD/SD0010.WAV',
+    notes: [false,false,false,true,false,false,false,false,false,false,false,true,false,false,false,false]
+    //   0: false,
+    //   1: false,
+    //   2: false,
+    //   3: false,
+    //   4: false,
+    //   5: false,
+    //   6: false,
+    //   7: false,
+    //   8: false,
+    //   9: false,
+    //   10: false,
+    //   11: false,
+    //   12: false,
+    //   13: false,
+    //   14: false,
+    //   15: false
+    // }
+  },
+  {
+    id: 'closedHat',
+    name: 'Closed Hat',
+    src:'http://assets.noahyarian.com/sounds/808/CH/CH.WAV',
+    notes: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    //   0: false,
+    //   1: false,
+    //   2: false,
+    //   3: false,
+    //   4: false,
+    //   5: false,
+    //   6: false,
+    //   7: false,
+    //   8: false,
+    //   9: false,
+    //   10: false,
+    //   11: false,
+    //   12: false,
+    //   13: false,
+    //   14: false,
+    //   15: false
+    // }
+  },
+  {
+    id: 'clap',
+    name: 'Clap',
+    src:'http://assets.noahyarian.com/sounds/808/CP/CP.WAV',
+    notes: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    //   0: false,
+    //   1: false,
+    //   2: false,
+    //   3: false,
+    //   4: false,
+    //   5: false,
+    //   6: false,
+    //   7: false,
+    //   8: false,
+    //   9: false,
+    //   10: false,
+    //   11: false,
+    //   12: false,
+    //   13: false,
+    //   14: false,
+    //   15: false
+    // }
+  }
+]
+
+
+
+
 
