@@ -82,10 +82,11 @@ gulp.task('browser-sync', function() {
 gulp.task('copy', function () {
   gulp.src(['src/assets/**/*'])
     .pipe(gulp.dest('public/assets'));
+  gulp.src(['src/lib/**/*'])
+    .pipe(gulp.dest('public/lib'));
 });
 
 gulp.task('build:dev', ['jade', 'sass', 'js', 'bower', 'copy']);
-gulp.task('build:prod', ['jade', 'sass', 'js', 'bower', 'copy'])
 
 gulp.task('serve', ['build:dev'], function () {
   gulp.start('browser-sync');

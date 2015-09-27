@@ -11,6 +11,27 @@ html
     //- link(rel="icon", type="image/png", href="assets/favicon32.png", sizes="32x32")
     //- link(rel="icon", type="image/png", href="assets/favicon16.png", sizes="16x16")
   body
-    h1 Welcome!
+    .board
+      .pads
+        #bass.pad
+        #snare.pad
+        #closedHat.pad
+        #clap.pad
+      .sequencer
+        - for (var i = 0; i < 2; i++)
+          .note.theone
+          .note
+          .note
+          .note
+          .note
+          .note
+          .note
+          .note
+      .buttons
+        .play PLAY
+        .pause
+        .stop STOP
     script(src='lib/build.js')
+    script(src='lib/lowLag.js')
+    script(src='lib/randomColor.js')
     script(src='main.js')

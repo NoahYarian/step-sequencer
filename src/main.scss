@@ -1,6 +1,36 @@
 body {
-  background: #303030;
-  h1 {
-    color: #FAFAFA;
+  background: #000;
   }
+
+.pad {
+  width: 200px;
+  height: 200px;
+  background: #646464;
+  margin: 10px;
+  display: inline-block;
 }
+
+.note {
+  width: 40px;
+  height: 80px;
+  background: #212121;
+  display: inline-block;
+}
+
+.theone {
+  background: #ccc;
+}
+
+.active {
+  background: lime;
+}
+
+.play, .stop {
+  width: 160px;
+  height: 40px;
+  background: #424242;
+  color: #FAFAFA;
+  text-align: center;
+}
+
+
