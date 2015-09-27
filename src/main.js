@@ -105,7 +105,8 @@ var tracks = [
     id: 'bass',
     name:'Bass Drum',
     src:'http://assets.noahyarian.com/sounds/808/BD/BD0075.WAV',
-    notes: [true,false,false,false,false,false,false,false,true,false,false,false,false,false,false,false]
+    notes: [true,false,false,false,false,false,false,true,
+            false,false,false,false,false,false,true,false]
       // 0: false,
       // 1: false,
       // 2: false,
@@ -128,7 +129,8 @@ var tracks = [
     id: 'snare',
     name: 'Snare Drum',
     src:'http://assets.noahyarian.com/sounds/808/SD/SD0010.WAV',
-    notes: [false,false,false,true,false,false,false,false,false,false,false,true,false,false,false,false]
+    notes: [true,false,false,false,true,false,false,false,
+            true,false,false,false,true,false,false,false]
     //   0: false,
     //   1: false,
     //   2: false,
@@ -151,7 +153,8 @@ var tracks = [
     id: 'closedHat',
     name: 'Closed Hat',
     src:'http://assets.noahyarian.com/sounds/808/CH/CH.WAV',
-    notes: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    notes: [true,true,true,true,true,true,true,true,
+            true,true,true,true,true,true,true,true]
     //   0: false,
     //   1: false,
     //   2: false,
@@ -174,7 +177,8 @@ var tracks = [
     id: 'clap',
     name: 'Clap',
     src:'http://assets.noahyarian.com/sounds/808/CP/CP.WAV',
-    notes: [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false]
+    notes: [true,false,false,false,false,false,false,false,
+            true,false,false,false,false,false,false,false]
     //   0: false,
     //   1: false,
     //   2: false,
