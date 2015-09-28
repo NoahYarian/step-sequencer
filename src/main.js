@@ -84,6 +84,7 @@ function loadSounds() {
 
 function play() {
   if (!isPlaying) {
+    $('.play').css('color', 'lime');
     timer = setInterval(function() {
       onNote(note);
 
@@ -102,14 +103,15 @@ function stop() {
   window.clearInterval(timer);
   isPlaying = false;
   note = 0;
-  $('.note').removeClass('active');
+  $('.tick').removeClass('active');
+  $('.play').css('color', '#FAFAFA');
 }
 
 
 function onNote(note) {
   var prevNote = note === 0 ? 15 : note-1;
-  $($('.note')[prevNote]).removeClass('active');
-  $($('.note')[note]).addClass('active');
+  $($('.tick')[prevNote]).removeClass('active');
+  $($('.tick')[note]).addClass('active');
 
   tracks.forEach(function(track, i) {
     if (track.notes[note]) {

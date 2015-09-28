@@ -2,7 +2,7 @@ body {
   background: #000;
   }
 
-.pads {
+.pads, .sequencer, .timeline, .buttons {
   display: flex;
   justify-content: center;
 }
@@ -23,8 +23,6 @@ body {
 }
 
 .sequencer {
-  display: flex;
-  justify-content: center;
   margin: 5px auto;
 }
 
@@ -45,12 +43,14 @@ body {
 }
 
 .active {
-  background: lime;
+  background: red;
 }
 
-.buttons {
-  display: flex;
-  justify-content: center;
+.tick {
+  height: 10px;
+  width: 40px;
+  margin: 0 2px;
+  // background: #212121;
 }
 
 .play, .stop {
