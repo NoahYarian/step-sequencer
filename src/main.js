@@ -68,7 +68,8 @@ $('.note').click(function() {
       note = index;
     }
   });
-  console.log(track, note);
+
+  $(this).toggleClass('trackNote');
   toggleNote(track, note);
 });
 
