@@ -58,10 +58,23 @@ $('.pad').click(function() {
   playSound(id);
 });
 
+$('.note').click(function() {
+  var track = $(this)[0].parentElement.id.slice(0, -5);
+  var note;
+  var that = this;
+
+  $($(this)[0].parentElement).children().each(function(index) {
+    if (that === this) {
+      note = index;
+    }
+  });
+  console.log(track, note);
+  toggleNote(track, note);
+});
+
 $('.play').click(play);
 $('.stop').click(stop);
 ///////////////////
-
 
 
 function showNotes() {
@@ -164,6 +177,17 @@ function getRandHue() {
   return colors[randInt];
 }
 
+function toggleNote(trackId, noteIndex) {
+  var trackIndex;
+
+  tracks.forEach(function(track, i) {
+    if (track.id === trackId) {
+      trackIndex = i;
+    }
+  });
+
+  tracks[trackIndex].notes[noteIndex] = !tracks[trackIndex].notes[noteIndex];
+}
 
 
 
