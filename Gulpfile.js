@@ -52,6 +52,11 @@ gulp.task('bower', function () {
         './dist/css/bootstrap.css'
       ]
     },
+    'font-awesome': {
+      main: [
+        './css/font-awesome.css'
+      ]
+    },
     jquery: {
       main: [
         './dist/jquery.js'
@@ -84,6 +89,8 @@ gulp.task('copy', function () {
     .pipe(gulp.dest('public/assets'));
   gulp.src(['src/lib/**/*'])
     .pipe(gulp.dest('public/lib'));
+  gulp.src(['bower_components/font-awesome/fonts/**/*'])
+    .pipe(gulp.dest('public/fonts'));
 });
 
 gulp.task('build:dev', ['jade', 'sass', 'js', 'bower', 'copy']);

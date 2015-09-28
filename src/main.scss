@@ -2,6 +2,11 @@ body {
   background: #000;
   }
 
+.pads {
+  display: flex;
+  justify-content: center;
+}
+
 .pad {
   width: 200px;
   height: 200px;
@@ -10,7 +15,21 @@ body {
   display: inline-block;
 }
 
+.big {
+  font-size: 12.5em;
+  text-align: center;
+  width: 100%;
+  line-height: 200px;
+}
+
+.sequencer {
+  display: flex;
+  justify-content: center;
+  margin: 5px auto;
+}
+
 .note {
+  margin: 0 2px;
   width: 40px;
   height: 80px;
   background: #212121;
@@ -22,11 +41,16 @@ body {
 }
 
 .trackNote {
-  background: red;
+  background: #646464;
 }
 
 .active {
   background: lime;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
 }
 
 .play, .stop {
@@ -35,6 +59,9 @@ body {
   background: #424242;
   color: #FAFAFA;
   text-align: center;
+  font-size: 2em;
+  margin: 5px;
+  cursor: pointer;
 }
 
 

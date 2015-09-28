@@ -45,15 +45,7 @@ var tracks = [
 // onLoad
 ///////////////
 $(function() {
-  tracks.forEach(function(track, i) {
-    // var $track = $($('.sequencer')[i]);
-    track.notes.forEach(function(note, j) {
-      var $note = $($($('.sequencer')[i]).children()[j]);
-      if (note) {
-        $note.addClass('trackNote');
-      }
-    });
-  });
+  showNotes();
   loadSounds();
 });
 ///////////////
@@ -70,10 +62,23 @@ $('.play').click(play);
 $('.stop').click(stop);
 ///////////////////
 
+
+
+function showNotes() {
+  tracks.forEach(function(track, i) {
+    track.notes.forEach(function(note, j) {
+      var $note = $($($('.sequencer')[i]).children()[j]);
+      if (note) {
+        $note.addClass('trackNote');
+      }
+    });
+  });
+}
+
 function loadSounds() {
   tracks.forEach(function(track, i) {
     lowLag.load(track.src, track.id);
-    $($('.pad')[i]).text(track.name);
+    // $($('.pad')[i]).text(track.name);
   });
 }
 
@@ -102,8 +107,8 @@ function stop() {
 
 
 function onNote(note) {
-  var prev = note === 0 ? 15 : note-1;
-  $($('.note')[prev(note)]).removeClass('active');
+  var prevNote = note === 0 ? 15 : note-1;
+  $($('.note')[prevNote]).removeClass('active');
   $($('.note')[note]).addClass('active');
 
   tracks.forEach(function(track, i) {
@@ -114,11 +119,49 @@ function onNote(note) {
 }
 
 function playSound(sound) {
-  $('#' + sound).css('background', randomColor({luminosity: 'bright'}));
+  $('#' + sound)
+    .css('background', randomColor({luminosity: 'bright'}))
+    .children('i')
+      .html(getRandIcon())
+      .css('color', randomColor({luminosity: 'bright'}));
   lowLag.play(sound, function () {
-    $('#' + sound).css('background', '#646464');
+    // $('#' + sound).css('background', '#646464'); //ooglay!
   });
 }
+
+
+
+function getRandIcon() {
+  var str = '&#xf';
+  var hexNoF = '0123456789ABCDE'.split('');
+  str += Math.round(Math.random());
+  str += hexNoF[Math.floor(Math.random() * 8)];
+  str += hexNoF[Math.floor(Math.random() * 15)];
+  str += ';';
+  return str;
+}
+
+// digits are 0 to e
+// [&#xf000;] to [&#xf280;]
+
+
+function randIndex(arrLength) {
+  return Math.floor(Math.random() * arrLength);
+}
+
+function pickTrackHues() {
+  tracks.forEach(function(track, i) {
+    track.hue1 = getRandHue();
+    track.hue2 = getRandHue();
+  });
+}
+
+function getRandHue() {
+  var colors = ['red', 'orange', 'yellow', 'green', 'blue', 'purple', 'pink'];
+  var randInt = Math.floor(Math.random() * 7);
+  return colors[randInt];
+}
+
 
 
 
