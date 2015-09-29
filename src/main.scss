@@ -13,10 +13,6 @@ body {
   background: #646464;
   margin: 10px;
   display: inline-block;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  user-select: none;
 }
 
 .big {
@@ -57,18 +53,36 @@ body {
   // background: #212121;
 }
 
-.play, .stop {
+.play, .stop, .tempo {
   width: 160px;
   height: 40px;
   background: #424242;
   color: #FAFAFA;
   text-align: center;
   font-size: 2em;
-  margin: 5px;
 }
 
-.play, .stop, .pad, .note {
+.play, .stop, .pad, .note, .plus, .minus {
   cursor: pointer;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
 }
 
+.buttons {
+  width: 550px;
+  justify-content: space-around;
+  margin: 5px auto;
+}
+
+.tempo {
+  display: flex;
+  justify-content: space-between;
+}
+
+.plus, .minus {
+  background: #212121;
+  width: 40px;
+}
 

@@ -75,8 +75,22 @@ $('.note').click(function() {
 
 $('.play').click(play);
 $('.stop').click(stop);
+
+$('.minus').click(tempoDown);
+$('.plus').click(tempoUp);
 ///////////////////
 
+function tempoUp() {
+  tempo++;
+  interval = (60 / tempo) * 500;
+  $('.display').text(tempo);
+}
+
+function tempoDown() {
+  tempo--;
+  interval = (60 / tempo) * 500;
+  $('.display').text(tempo);
+}
 
 function showNotes() {
   tracks.forEach(function(track, i) {
