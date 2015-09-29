@@ -5,7 +5,7 @@ lowLag.init();
 var tempo = 120;
 var oldTempo;
 
-var interval = (60 / tempo) * 500;
+var interval = (60 / tempo) * 250;
 
 var note = 0;
 var timer;
@@ -31,8 +31,15 @@ var tracks = [
     id: 'closedHat',
     name: 'Closed Hat',
     src:'http://assets.noahyarian.com/sounds/808/CH/CH.WAV',
-    notes: [true,true,true,true,true,true,true,true,
-            true,true,true,true,true,true,true,true]
+    notes: [true,true,false,true,true,true,false,true,
+            true,true,false,true,true,false,true,false]
+  },
+  {
+    id: 'openHat',
+    name: 'Open Hat',
+    src:'http://assets.noahyarian.com/sounds/808/OH/OH00.WAV',
+    notes: [false,false,true,false,false,false,true,false,
+            false,false,true,false,false,true,false,true]
   },
   {
     id: 'clap',
@@ -104,6 +111,7 @@ $('.tempo').mousewheel(function(event) {
 });
 
 $('.randomize').click(randomizeBeat);
+$('.clear').click(clearBeat);
 ///////////////////
 
 function tempoUp() {
@@ -281,6 +289,13 @@ function randomizeBeat() {
         track.notes.push(false);
       }
     }
+  });
+  showNotes();
+}
+
+function clearBeat() {
+  tracks.forEach(function(track, i) {
+    track.notes = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
   });
   showNotes();
 }

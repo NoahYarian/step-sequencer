@@ -62,7 +62,7 @@ body {
   font-size: 2em;
 }
 
-.randomize, {
+.randomize, .clear {
   background: #424242;
   color: #FAFAFA;
   text-align: center;
@@ -70,7 +70,7 @@ body {
   width: 40px;
 }
 
-.play, .stop, .pad, .note, .plus, .minus, .randomize {
+.play, .stop, .pad, .note, .plus, .minus, .randomize, .clear {
   cursor: pointer;
   -webkit-user-select: none;
   -khtml-user-select: none;
@@ -79,7 +79,7 @@ body {
 }
 
 .buttons {
-  width: 550px;
+  width: 619px;
   justify-content: space-around;
   margin: 5px auto;
 }
