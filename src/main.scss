@@ -86,3 +86,17 @@ body {
   width: 40px;
 }
 
+.tempoEdit {
+  background: #424242;
+  width: 80px;
+  text-align: center;
+  color: #FAFAFA;
+  border: none;
+  &:focus {
+    outline: none;
+  }
+}
+
+.hidden {
+  display: none;
+}

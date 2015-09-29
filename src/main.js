@@ -3,6 +3,7 @@ console.log('main.js is loaded');
 lowLag.init();
 
 var tempo = 120;
+var oldTempo;
 
 var interval = (60 / tempo) * 500;
 
@@ -78,18 +79,74 @@ $('.stop').click(stop);
 
 $('.minus').click(tempoDown);
 $('.plus').click(tempoUp);
+$('.tempoEdit').change(editTempo);
+
+$('.tempoEdit').click(function() {
+  oldTempo = tempo;
+  editTempoListenersOn();
+});
+
+$(document).click(function(event) {
+  if(!$(event.target).closest('.tempoEdit').length) {
+    editTempo();
+    editTempoListenersOff();
+  }
+});
+
+$('.tempo').mousewheel(function(event) {
+  event.deltaY < 0 ? tempoDown() : tempoUp();
+});
 ///////////////////
 
 function tempoUp() {
   tempo++;
-  interval = (60 / tempo) * 500;
-  $('.display').text(tempo);
+  setIntervalVar();
+  $('.tempoEdit').val(tempo);
 }
 
 function tempoDown() {
   tempo--;
+  setIntervalVar();
+  $('.tempoEdit').val(tempo);
+}
+
+function editTempo() {
+  setIntervalVar();
+  tempo = $('.tempoEdit').val();
+}
+
+function editTempoListenersOn() {
+  $(document).keydown(function(e) {
+    switch(e.which) {
+
+        case 27: // esc
+          tempo = oldTempo;
+          $('.tempoEdit').val(tempo);
+        case 13: // enter
+          $('.tempoEdit').blur();
+          editTempoListenersOff();
+        break;
+
+        case 38: // up
+          tempoUp();
+        break;
+
+        case 40: // down
+          tempoDown();
+        break;
+
+        default: return; // exit this handler for other keys
+    }
+    e.preventDefault(); // prevent the default action (scroll / move caret)
+  });
+}
+
+function editTempoListenersOff() {
+  $(document).off('keydown');
+}
+
+function setIntervalVar() {
   interval = (60 / tempo) * 500;
-  $('.display').text(tempo);
 }
 
 function showNotes() {
@@ -106,7 +163,6 @@ function showNotes() {
 function loadSounds() {
   tracks.forEach(function(track, i) {
     lowLag.load(track.src, track.id);
-    // $($('.pad')[i]).text(track.name);
   });
 }
 
@@ -155,7 +211,6 @@ function playSound(sound) {
       .html(getRandIcon())
       .css('color', randomColor({luminosity: 'bright'}));
   lowLag.play(sound, function () {
-    // $('#' + sound).css('background', '#646464'); //ooglay!
   });
 }
 
@@ -171,6 +226,7 @@ function getRandIcon() {
   return str;
 }
 
+// FA Icons -
 // digits are 0 to e
 // [&#xf000;] to [&#xf280;]
 
