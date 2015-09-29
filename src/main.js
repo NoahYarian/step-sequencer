@@ -74,6 +74,12 @@ $('.note').click(function() {
   toggleNote(track, note);
 });
 
+$('.note').hover(function() {
+  $(this).css('border', '4px solid lime');
+}, function() {
+  $(this).css('border', '');
+});
+
 $('.play').click(play);
 $('.stop').click(stop);
 
@@ -96,6 +102,8 @@ $(document).click(function(event) {
 $('.tempo').mousewheel(function(event) {
   event.deltaY < 0 ? tempoDown() : tempoUp();
 });
+
+$('.randomize').click(randomizeBeat);
 ///////////////////
 
 function tempoUp() {
@@ -155,6 +163,8 @@ function showNotes() {
       var $note = $($($('.sequencer')[i]).children()[j]);
       if (note) {
         $note.addClass('trackNote');
+      } else {
+        $note.removeClass('trackNote'); //randomize needs this
       }
     });
   });
@@ -260,6 +270,20 @@ function toggleNote(trackId, noteIndex) {
   tracks[trackIndex].notes[noteIndex] = !tracks[trackIndex].notes[noteIndex];
 }
 
+
+function randomizeBeat() {
+  tracks.forEach(function(track, i) {
+    track.notes = [];
+    for (var j = 0; j < 16; j++) {
+      if (Math.round(Math.random())) {
+        track.notes.push(true);
+      } else {
+        track.notes.push(false);
+      }
+    }
+  });
+  showNotes();
+}
 
 
 

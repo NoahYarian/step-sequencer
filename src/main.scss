@@ -62,7 +62,15 @@ body {
   font-size: 2em;
 }
 
-.play, .stop, .pad, .note, .plus, .minus {
+.randomize, {
+  background: #424242;
+  color: #FAFAFA;
+  text-align: center;
+  font-size: 2em;
+  width: 40px;
+}
+
+.play, .stop, .pad, .note, .plus, .minus, .randomize {
   cursor: pointer;
   -webkit-user-select: none;
   -khtml-user-select: none;
