@@ -294,7 +294,7 @@ function randomizeBeat() {
   tracks.forEach(function(track, i) {
     track.notes = [];
     for (var j = 0; j < 16; j++) {
-      if (Math.round(Math.random())) {
+      if (Math.round(Math.random() - .25)) {
         track.notes.push(true);
       } else {
         track.notes.push(false);
