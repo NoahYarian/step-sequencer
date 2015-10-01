@@ -5,7 +5,7 @@ lowLag.init();
 var tempo = 120;
 var oldTempo;
 
-var interval = (60 / tempo) * 250;
+var interval = (60 / tempo) * 500;
 
 var note = 0;
 var timer;
