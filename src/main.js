@@ -2,53 +2,56 @@ console.log('main.js is loaded');
 
 lowLag.init();
 
-var tempo = 120;
+var tempo = 115;
 var oldTempo;
 
-var interval = (60 / tempo) * 500;
+var interval = (60 / tempo) * 250;
 
 var note = 0;
 var timer;
+var timerSinceLastNote;
+var timeSinceLastNote;
 
 var isPlaying = false;
 
-var tracks = [
-  {
-    id: 'bass',
-    name:'Bass Drum',
-    src:'http://assets.noahyarian.com/sounds/808/BD/BD0075.WAV',
-    notes: [true,false,false,false,false,false,false,true,
-            false,false,false,false,false,false,true,false]
-  },
-  {
-    id: 'snare',
-    name: 'Snare Drum',
-    src:'http://assets.noahyarian.com/sounds/808/SD/SD0010.WAV',
-    notes: [true,false,false,false,true,false,false,false,
-            true,false,false,false,true,false,false,false]
-  },
-  {
-    id: 'closedHat',
-    name: 'Closed Hat',
-    src:'http://assets.noahyarian.com/sounds/808/CH/CH.WAV',
-    notes: [true,true,false,true,true,true,false,true,
-            true,true,false,true,true,false,true,false]
-  },
-  {
-    id: 'openHat',
-    name: 'Open Hat',
-    src:'http://assets.noahyarian.com/sounds/808/OH/OH00.WAV',
-    notes: [false,false,true,false,false,false,true,false,
-            false,false,true,false,false,true,false,true]
-  },
-  {
-    id: 'clap',
-    name: 'Clap',
-    src:'http://assets.noahyarian.com/sounds/808/CP/CP.WAV',
-    notes: [true,false,false,false,false,false,false,false,
-            true,false,false,false,false,false,false,false]
-  }
-];
+var tracks = [{"id":"bass","name":"Bass Drum","src":"http://assets.noahyarian.com/sounds/808/BD/BD0075.WAV","notes":[true,false,false,false,false,false,false,false,true,false,false,false,false,false,false,true]},{"id":"snare","name":"Snare Drum","src":"http://assets.noahyarian.com/sounds/808/SD/SD0010.WAV","notes":[false,false,false,false,true,false,false,false,false,false,false,false,true,false,false,false]},{"id":"closedHat","name":"Closed Hat","src":"http://assets.noahyarian.com/sounds/808/CH/CH.WAV","notes":[false,false,true,false,false,false,true,false,false,false,true,false,false,false,true,false]},{"id":"openHat","name":"Open Hat","src":"http://assets.noahyarian.com/sounds/808/OH/OH00.WAV","notes":[true,false,true,false,true,false,true,false,true,true,false,true,false,true,false,false]},{"id":"clap","name":"Clap","src":"http://assets.noahyarian.com/sounds/808/CP/CP.WAV","notes":[false,false,false,false,true,false,false,false,false,false,false,false,true,false,true,false]}]
+// [
+//   {
+//     id: 'bass',
+//     name:'Bass Drum',
+//     src:'http://assets.noahyarian.com/sounds/808/BD/BD0075.WAV',
+//     notes: [true,false,false,false,false,false,false,true,
+//             false,false,false,false,false,false,true,false]
+//   },
+//   {
+//     id: 'snare',
+//     name: 'Snare Drum',
+//     src:'http://assets.noahyarian.com/sounds/808/SD/SD0010.WAV',
+//     notes: [true,false,false,false,true,false,false,false,
+//             true,false,false,false,true,false,false,false]
+//   },
+//   {
+//     id: 'closedHat',
+//     name: 'Closed Hat',
+//     src:'http://assets.noahyarian.com/sounds/808/CH/CH.WAV',
+//     notes: [true,true,false,true,true,true,false,true,
+//             true,true,false,true,true,false,true,false]
+//   },
+//   {
+//     id: 'openHat',
+//     name: 'Open Hat',
+//     src:'http://assets.noahyarian.com/sounds/808/OH/OH00.WAV',
+//     notes: [false,false,true,false,false,false,true,false,
+//             false,false,true,false,false,true,false,true]
+//   },
+//   {
+//     id: 'clap',
+//     name: 'Clap',
+//     src:'http://assets.noahyarian.com/sounds/808/CP/CP.WAV',
+//     notes: [true,false,false,false,false,false,false,false,
+//             true,false,false,false,false,false,false,false]
+//   }
+// ];
 
 // onLoad
 ///////////////
@@ -64,6 +67,9 @@ $(function() {
 $('.pad').click(function() {
   var id = $(this).attr('id');
   playSound(id);
+  if (isPlaying) {
+    addNoteRealtime(id);
+  }
 });
 
 $('.note').click(function() {
@@ -162,7 +168,7 @@ function editTempoListenersOff() {
 }
 
 function setIntervalVar() {
-  interval = (60 / tempo) * 500;
+  interval = (60 / tempo) * 250;
 }
 
 function showNotes() {
@@ -211,6 +217,11 @@ function stop() {
 
 
 function onNote(note) {
+  window.clearInterval(timerSinceLastNote);
+  timeSinceLastNote = 0;
+  timerSinceLastNote = setInterval(function() {
+    timeSinceLastNote++;
+  }, 1);
   var prevNote = note === 0 ? 15 : note-1;
   $($('.tick')[prevNote]).removeClass('active');
   $($('.tick')[note]).addClass('active');
@@ -300,6 +311,13 @@ function clearBeat() {
   showNotes();
 }
 
+function addNoteRealtime(padId) {
+  var roundNoteDown = timeSinceLastNote < interval / 2 ? true : false;
+  var whichNote = roundNoteDown ? note-1 : note;
+  var datNote = $(`#${padId}Track .note`)[whichNote];
+  toggleNote(padId, whichNote);
+  $(datNote).toggleClass('trackNote');
+}
 
 
 
