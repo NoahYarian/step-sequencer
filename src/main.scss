@@ -62,7 +62,7 @@ body {
   font-size: 2em;
 }
 
-.randomize, .clear {
+.randomize, .clear, .shiftLeft, .shiftRight {
   background: #424242;
   color: #FAFAFA;
   text-align: center;
@@ -70,7 +70,7 @@ body {
   width: 40px;
 }
 
-.play, .stop, .pad, .note, .plus, .minus, .randomize, .clear {
+.play, .stop, .pad, .note, .plus, .minus, .randomize, .clear, .shiftLeft, .shiftRight {
   cursor: pointer;
   -webkit-user-select: none;
   -khtml-user-select: none;

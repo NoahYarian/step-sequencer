@@ -118,6 +118,14 @@ $('.tempo').mousewheel(function(event) {
 
 $('.randomize').click(randomizeBeat);
 $('.clear').click(clearBeat);
+
+$('.shiftLeft').click(function() {
+  shiftBeat('left');
+});
+
+$('.shiftRight').click(function() {
+  shiftBeat('right');
+});
 ///////////////////
 
 function tempoUp() {
@@ -319,7 +327,25 @@ function addNoteRealtime(padId) {
   $(datNote).toggleClass('trackNote');
 }
 
+//TODO : save previous beat to go back to, then saving the beat you came from to go forward to again
+// aka save beats on the fly
 
+//TODO: checkbox for whether triggering a pad toggles the note while playing
+
+//TODO: shift beat left or right
+
+function shiftBeat(direction) {
+  if (direction === "right") {
+    tracks.forEach(function(track) {
+      track.notes.unshift(track.notes.pop());
+    });
+  } else {
+    tracks.forEach(function(track) {
+      track.notes.push(track.notes.shift());
+    });
+  }
+  showNotes();
+}
 
 
 
